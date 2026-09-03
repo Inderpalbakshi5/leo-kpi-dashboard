@@ -1,0 +1,76 @@
+name: Refresh Léo KPI dashboard
+
+on:
+  schedule:
+    # Every hour, at minute 15.
+    - cron: '15 * * * *'
+  workflow_dispatch: {}   # lets you trigger a run manually from the Actions tab
+  push:
+    branches: [main]
+    paths:
+      - 'scripts/refresh_dashboard.py'
+      - '.github/workflows/refresh-kpis.yml'
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: refresh-kpis
+  cancel-in-progress: false
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repo
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Refresh dashboard data from Tavus
+        env:
+          TAVUS_API_KEY: ${{ secrets.TAVUS_API_KEY }}
+          TAVUS_PAL_ID: ${{ secrets.TAVUS_PAL_ID }}
+        run: python scripts/refresh_dashboard.py
+
+      - name: Commit updated index.html
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add index.html
+          if git diff --cached --quiet; then
+            echo "No changes to commit."
+          else
+            git commit -m "chore: refresh Léo KPI dashboard [skip ci]"
+            git push
+          fi
+
+  # Deploys index.html via GitHub Pages using the Actions deployment source.
+  # This only runs after `refresh` succeeds, and only actually publishes
+  # something once Pages is switched to "GitHub Actions" as its source under
+  # Settings > Pages (a one-time manual step — see README.md).
+  deploy:
+    needs: refresh
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Check out repo
+        uses: actions/checkout@v4
+        with:
+          ref: main
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: '.'
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
