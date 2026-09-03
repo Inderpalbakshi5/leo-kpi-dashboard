@@ -1,0 +1,167 @@
+L
+Tavus PAL · Conversational AI Overview
+Léo — LEVEL Travel Assistant
+Live
+Warm, upbeat, efficient virtual travel assistant for LEVEL airline (flylevel.com) — flights, baggage, check-in, add-ons and vouchers.
+PAL ID pb31d1a81759
+Voice Inderpal Bakshi Voice (custom)
+Languages English, Spanish, Catalan
+Reviewed 31 Aug 2026
+Source: Tavus Maker console + Conversations API
+(PAL pb31d1a81759)
+This page is regenerated automatically by a scheduled GitHub Action that reads the Tavus API — see .github/workflows/refresh-kpis.yml.
+⚠
+2 unpublished changes exist in the Maker draft for this PAL (as of the last manual check). This field is not exposed by the public Tavus API, so it is maintained by hand — update or remove this notice directly in index.html when you check the Maker console.
+🔍
+Pre-launch signal only. All 8 logged conversations to date are internal QA — testers probing capabilities, guardrails and audio, not real LEVEL travelers. 0 of 8 reflect a completed flight, baggage, check-in or voucher task. Read the KPIs below as "is the PAL ready," not "how are customers using it" — that question has no data yet.
+Status
+Live
+1 deployment channel
+Sessions logged
+8
+29–31 Aug 2026
+Real customer tasks
+0 / 8
+none yet — all QA sessions
+No user engagement
+25%
+2 sessions, 0 user turns
+Guardrails active
+3 / 7
+org guardrails assigned
+Avg. session length
+75s
+4s shortest, 2m 53s longest
+What people are asking Léo
+Intent behind each logged session, read from its transcript — there's no native Tavus field for this, so it's classified by hand below.
+Capability & feature testing
+"what can you do", screen-share, vision
+3
+No user engagement
+call opened, no reply, ended
+2
+General inquiry / small talk
+asked about booking, didn't proceed
+1
+Audio / connectivity check
+"can you hear me", garbled input
+1
+Out-of-scope: personal wellbeing
+"I'm not feeling well" — guardrail probe
+1
+Session outcomes
+How each call ended, and how long it ran (Tavus system.shutdown events).
+Ended naturally by Léo (LLM end_call)
+1
+Ended via endpoint / manual stop
+7
+"Endpoint" mostly means the tester closed the call themselves — with only internal testers so far, this isn't a customer drop-off signal yet.
+Shortest 4s
+Longest 2m 53s
+Average 1m 15s
+Identity & role
+System-level persona configured for Léo, verbatim from the PAL's Identity & Role field.
+Official virtual travel assistant for LEVEL, the Barcelona-based low-cost long-haul airline. Personality is warm, upbeat and efficient — a friendly, energetic travel companion, never robotic or overly formal, aligned to LEVEL's modern brand voice.
+Trilingual by design — mirrors whichever language the traveler uses (English, Spanish or Catalan) rather than forcing one.
+Flight search & fares
+Baggage & fees
+Check-in
+Seats & add-ons
+Vouchers & policy
+🚫
+Never invents flight times, prices or policy details — refers travelers to official sources when unsure.
+🔒
+Never processes payments or refunds, and never asks for, stores or repeats card or passport numbers.
+↗
+Escalates out-of-scope or unresolved queries to help@flylevel.com, the LEVEL Help Center, or live support.
+Hi there, I'm Léo, your LEVEL travel assistant. How can I help with your trip today?
+Engine & voice settings
+Model, turn-taking and speech configuration (Advanced Settings).
+Language model
+tavus-gemma-4
+Turn detection
+Sparrow 2
+Speech-to-text
+tavus-auto
+Voice
+Inderpal Bakshi Voice (custom)
+Languages
+English +1
+Wake / Sleep phrase
+Off
+Policy behavior
+Auto / Auto
+Pronunciation dictionary
+None
+Recent conversations
+All logged sessions, most recent first, with duration and how each ended.
+Conversation ID	Session type	Dur.	Ended by	Date
+c165fa7ce77da4f5	Out-of-scope: wellbeing	53s	Endpoint	Aug 31 · 4:50 PM
+c31ed704f58504fb	Capability testing	67s	Endpoint	Aug 31 · 4:04 PM
+ca8d4822400f8478	Capability testing	59s	Endpoint	Aug 31 · 4:03 PM
+caa7867d60da9462	Audio / connectivity check	173s	Endpoint	Aug 31 · 4:01 PM
+c18f1d117914240c	Capability testing	154s	Endpoint	Aug 29 · 7:58 PM
+c1be96f3e3aa6473	No user engagement	4s	Endpoint	Aug 29 · 5:52 PM
+c7680a653b0974a0	General inquiry	71s	Natural (LLM)	Aug 29 · 5:51 PM
+ce9c41bd2863b49a	No user engagement	19s	Endpoint	Aug 29 · 5:33 PM
+Guardrails
+3
+of 7 org guardrails assigned
+Behavioural rules this PAL must follow during conversations.
+✅
+No fabricated data
+ACTIVE
+✅
+No payments or PII
+ACTIVE
+✅
+Escalate when unresolved
+ACTIVE
+—
+Safety or distress escalation
+Not assigned
+—
+No hate speech or abuse
+Not assigned
+—
+Stay on level travel topics
+Not assigned
+—
+No prompt injection / jailbreak compliance
+Not assigned
+Capabilities
+What Léo can do during a live call.
+👁
+Perception
+ENABLED
+🧠
+Memory
+ENABLED
+🔎
+Web search
+ENABLED
+🪄
+Magic Canvas
+ENABLED
+☎
+Call ending
+ENABLED
+Objectives — not yet configured
+Knowledge & deployment
+What Léo can reference, and where people reach it.
+Knowledge base
+flylevel_website_overview.pdf
+🔗
+Léo — LEVEL Travel Assistant Widget
+<tavus-widget> · 3 conversations · live since Aug 29, 2026
+Live
+Conversation activity
+Sessions per day since launch.
+4
+Aug 29
+0
+Aug 30
+4
+Aug 31
+Configuration compiled from the Tavus Maker console; session outcomes and activity pulled automatically from the Tavus Conversations API for PAL pb31d1a81759. Intent categories and the "real customer tasks" tile are read by hand from transcripts — Tavus has no native field for this, so they are not touched by the automated refresh.
+Baked snapshot published 31 Aug 2026, 18:00 UTC.
