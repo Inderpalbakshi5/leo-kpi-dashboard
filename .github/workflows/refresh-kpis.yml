@@ -10,6 +10,8 @@ on:
     paths:
       - 'scripts/refresh_dashboard.py'
       - '.github/workflows/refresh-kpis.yml'
+      - 'index.html'  
+    
 
 permissions:
   contents: write
